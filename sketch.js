@@ -105,6 +105,23 @@ const snake = {
 }
 
 
+// APPLE
+
+let startPos = [boardSize - 2, boardSize / 2];
+
+const apple = {
+  pos: startPos,
+  color: [255, 0, 0],
+
+  draw() {
+    fill(this.color);
+    strokeWeight(1);
+    stroke(255);
+    square(this.pos[0] * tileSize, this.pos[1] * tileSize, tileSize);
+  }
+}
+
+
 // SETUP AND RUN
 
 function setup() {
@@ -117,5 +134,6 @@ function draw() {
   background(220);
   board.draw();
   snake.draw();
+  apple.draw();
   snake.move();
 }
