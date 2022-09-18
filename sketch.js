@@ -48,10 +48,12 @@ class Tile {
 
 // SNAKE
 
-let startPos = [1, boardSize / 2];
+let startPos1 = [1, boardSize / 2];
+let startPos2 = [2, boardSize / 2];
+let startPos3 = [3, boardSize / 2];
 
 const snake = {
-  snake: [startPos],
+  snake: [startPos1, startPos2, startPos3],
   direction: [1, 0],
   color: [0, 255, 0],
 
@@ -73,6 +75,21 @@ const snake = {
     // Move the snake
     let x = this.snake[this.snake.length - 1][0] + this.direction[0];
     let y = this.snake[this.snake.length - 1][1] + this.direction[1];
+
+    // Screen wrap
+    if (x >= boardSize) {
+      x = 0;
+    }
+    else if (x < 0) {
+      x = boardSize - 1;
+    }
+    if (y >= boardSize) {
+      y = 0;
+    }
+    else if (y < 0) {
+      y = boardSize - 1;
+    }
+
     this.snake.push([x, y]);
     this.snake.shift();
   },
@@ -92,7 +109,7 @@ const snake = {
 
 function setup() {
   createCanvas(canvasSize, canvasSize);
-  frameRate(6);
+  frameRate(8);
   board.generate();
 }
 
